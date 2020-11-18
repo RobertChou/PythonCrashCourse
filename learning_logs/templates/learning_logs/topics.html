@@ -1,0 +1,28 @@
+<!--
+ * @Author: Rober Chou
+ * @Date: 2020-10-25 21:16:25
+ * @LastEditTime: 2020-11-17 14:13:10
+ * @LastEditors: Rober Chou
+ * @Description: 
+ * @symbol_custom_string_obkoro1: Code make our world better！！
+-->
+{% extends "learning_logs/base.html" %}
+{% block header %}
+<h1>Topics</h1>
+{% endblock header %}
+
+{% block content %}
+<ul>
+    {% for topic in topics %}
+    <li>
+        <h3>
+            <a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a>
+        </h3>
+    </li>
+    {% empty %}
+    <li>No topics have been added yet.</li>
+    {% endfor %}
+ </ul>
+
+    <h3><a href="{% url 'learning_logs:new_topic' %}">Add a new topic:</a></h3>
+{% endblock content %}

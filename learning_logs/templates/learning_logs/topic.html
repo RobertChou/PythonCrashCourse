@@ -1,0 +1,37 @@
+<!--
+ * @Author: Rober Chou
+ * @Date: 2020-10-25 21:16:25
+ * @LastEditTime: 2020-11-17 15:21:17
+ * @LastEditors: Rober Chou
+ * @Description: 
+ * @symbol_custom_string_obkoro1: Code make our world better！！
+-->
+
+{% extends "learning_logs/base.html" %}
+{% block header %}
+<h2>{{ topic }}</h2>
+{% endblock header %}
+
+{% block content %}
+
+<p>
+    <a href="{% url 'learning_logs:new_entry' topic.id %}">add new entry</a>
+</p>
+
+    {% for entry in entries %}
+    <div class="panel-heading">
+        <h3>
+            {{ entry.date_added|date:'M d,Y H:i' }}
+            <small>
+                <a href="{% url 'learning_logs:edit_entry' entry.id %}">edit entry</a>
+            </small>
+        </h3>
+    </div>
+    <div class="panel-body">
+        {{ entry.text|linebreaks }}
+    </div><!--panel-->
+    {% empty %}
+        There are no entries for this topic yet.
+    {% endfor %}
+
+{% endblock content %}
